@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TextManager : MonoBehaviour
 {
     public MapGenerator mapGenerator;//MapGeneratorの関数にアクセスできるようにする
 
-    public GameObject successText, failText, toTitleButton, toTitleButtonFrame;//お宝探しの成功時，失敗時，タイトル遷移ボタンのテキストオブジェクト
-    public Text operationInstruction;
+    public GameObject successText, failText, toTitleButton;//, toTitleButtonFrame;//お宝探しの成功時，失敗時，タイトル遷移ボタンのテキストオブジェクト
+    public TextMeshProUGUI operationInstruction;
     //Start is called before the first frame update
     void Start()
     {
         //最初はいずれもも見えない状態
         toTitleButton.SetActive(false);
-        toTitleButtonFrame.SetActive(false);
+        //toTitleButtonFrame.SetActive(false);
         successText.SetActive(false);
         failText.SetActive(false);
-        operationInstruction.text = "←↓→キーで方向転換 ↑キーで前進\r\nスペースキーで発掘　hキーでヒント";
+        operationInstruction.text = "←↓→キーで方向転換 ↑キーで前進\r\nスペースキーで発掘  hキーでヒント";
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class TextManager : MonoBehaviour
                     successText.SetActive(true);//クリアメッセージを表示
                     operationInstruction.text = "スペースキーでもう一回お宝さがし";
                     toTitleButton.SetActive(true);//タイトル遷移ボタン表示
-                    toTitleButtonFrame.SetActive(true);//タイトル遷移ボタン表示
+                    //toTitleButtonFrame.SetActive(true);//タイトル遷移ボタン表示
                 }
                 else//お宝探しが失敗したならば
                 {
@@ -47,6 +48,12 @@ public class TextManager : MonoBehaviour
                 Start();//もう一回
             }
 
+        }
+
+        //Escキーでタイトルに戻る
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("StartScene");//ゲーム画面へと遷移
         }
 
         //移動，または方向転換が起きたならば
