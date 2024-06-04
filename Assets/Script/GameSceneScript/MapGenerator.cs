@@ -1,45 +1,45 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ƒ}ƒbƒv‚ğMapCƒ}ƒX‚Ì‚±‚Æ‚ğSpace‚ÆŒÄ‚Ô‚±‚Æ‚É‚·‚é
+//ãƒãƒƒãƒ—ã‚’Mapï¼Œãƒã‚¹ã®ã“ã¨ã‚’Spaceã¨å‘¼ã¶ã“ã¨ã«ã™ã‚‹
 public class MapGenerator : MonoBehaviour
 {
-    //ƒ}ƒbƒv‚ğƒeƒLƒXƒg‚Å•\Œ»@ƒeƒLƒXƒg’†‚Å0‚ª°C‚P‚ª•ÇC2‚ªƒvƒŒƒCƒ„[‚Ìƒ}ƒXC","‚ª¡–Ú‚Ì‹æØ‚è‚ğ•\‚·
+    //ãƒãƒƒãƒ—ã‚’ãƒ†ã‚­ã‚¹ãƒˆã§è¡¨ç¾ã€€ãƒ†ã‚­ã‚¹ãƒˆä¸­ã§0ãŒåºŠï¼Œï¼‘ãŒå£ï¼Œ2ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒã‚¹ï¼Œ","ãŒå‡ç›®ã®åŒºåˆ‡ã‚Šã‚’è¡¨ã™
     [SerializeField] TextAsset mapText;
-    //5 * 5‚Ìƒ}ƒbƒv‚Ìˆê—á‚Æ‚µ‚Ä‚ÍˆÈ‰º
+    //5 * 5ã®ãƒãƒƒãƒ—ã®ä¸€ä¾‹ã¨ã—ã¦ã¯ä»¥ä¸‹
     // 1,1,1,1,1
     // 1,0,0,1,1
     // 1,0,1,1,1
     // 1,0,0,2,1
     // 1,1,1,1,1
 
-    //ƒIƒuƒWƒFƒNƒg‚ÌŠG‚ÌƒvƒŒƒtƒ@ƒu@”z—ñ‚Ì0‚ª°C‚P‚ª•ÇC2‚ªƒvƒŒƒCƒ„[‚ÌƒhƒbƒgŠGC3‚ª‚¨•ó‚ğ•\‚·
+    //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çµµã®ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–ã€€é…åˆ—ã®0ãŒåºŠï¼Œï¼‘ãŒå£ï¼Œ2ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ‰ãƒƒãƒˆçµµï¼Œ3ãŒãŠå®ã‚’è¡¨ã™
     [SerializeField] GameObject[] prefabs;
 
-    //–À˜H‚ÌŠeƒvƒŒƒtƒ@ƒu‚Ìe—v‘f
+    //è¿·è·¯ã®å„ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–ã®è¦ªè¦ç´ 
     [SerializeField] Transform map2D;
 
-    //3D‹“_‚Ì•Ç‰æ‘œ‚Ì‚½‚ß‚Ì”z—ñ,ƒvƒŒƒCƒ„[‚©‚çŒ©‚Äè‘O‚Ì‰æ‘œ‚ªæ‚ÉŠi”[‚³‚ê‚é‚æ‚¤‚É‚·‚é
+    //3Dè¦–ç‚¹ã®å£ç”»åƒã®ãŸã‚ã®é…åˆ—,ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰è¦‹ã¦æ‰‹å‰ã®ç”»åƒãŒå…ˆã«æ ¼ç´ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
     [SerializeField] WallArr[] wallArr;
 
-    //ƒ}ƒbƒv‚Ìc‰¡‚Ì’·‚³‚ğ•\‚·
+    //ãƒãƒƒãƒ—ã®ç¸¦æ¨ªã®é•·ã•ã‚’è¡¨ã™
     public int row, col;
 
-    //ƒ}ƒbƒv‚Ì‘å‚«‚³‚Ì—”•Û—p‚Ì•â••Ï”
+    //ãƒãƒƒãƒ—ã®å¤§ãã•ã®ä¹±æ•°ä¿æŒç”¨ã®è£œåŠ©å¤‰æ•°
     public int h, w;
 
-    //’†SÀ•W‚ÌˆÊ’u‚ğ•\‚·
+    //ä¸­å¿ƒåº§æ¨™ã®ä½ç½®ã‚’è¡¨ã™
     Vector2 centerPos;
 
-    //ˆêƒ}ƒX‚²‚Æ‚Ì•‚ğ•\‚·
+    //ä¸€ãƒã‚¹ã”ã¨ã®å¹…ã‚’è¡¨ã™
     float spaceSize;
 
-    MazeGenerator maze; //MazeGeneratorŒ^‚Ì•Ï”‚ğ’è‹`
-    int[,] mazeData; //–À˜Hƒf[ƒ^—p‚ÉintŒ^‚Ì“ñŸŒ³”z—ñ‚Ì•Ï”‚ğ’è‹`
-    GameObject[] objects;//2Dƒ}ƒbƒv§ì‚ÌƒIƒuƒWƒFƒNƒg‚ğ•ÛŠÇ‚µ‚Ä‚¨‚­•Ï”CƒIƒuƒWƒFƒNƒg”j‰ó—p
+    MazeGenerator maze; //MazeGeneratorå‹ã®å¤‰æ•°ã‚’å®šç¾©
+    int[,] mazeData; //è¿·è·¯ãƒ‡ãƒ¼ã‚¿ç”¨ã«intå‹ã®äºŒæ¬¡å…ƒé…åˆ—ã®å¤‰æ•°ã‚’å®šç¾©
+    GameObject[] objects;//2Dãƒãƒƒãƒ—åˆ¶ä½œæ™‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¿ç®¡ã—ã¦ãŠãå¤‰æ•°ï¼Œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´å£Šç”¨
 
-    //Šeƒ}ƒX‚ğ•\‚·—ñ‹“Œ^,ƒeƒLƒXƒg‚Å‚Í0,1,2•¶š—ñ‚¾‚ªCƒvƒƒOƒ‰ƒ€‚Åˆµ‚¢‚â‚·‚¢‚æ‚¤—ñ‹“Œ^‚Å•\‚·
+    //å„ãƒã‚¹ã‚’è¡¨ã™åˆ—æŒ™å‹,ãƒ†ã‚­ã‚¹ãƒˆã§ã¯0,1,2æ–‡å­—åˆ—ã ãŒï¼Œãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§æ‰±ã„ã‚„ã™ã„ã‚ˆã†åˆ—æŒ™å‹ã§è¡¨ã™
     public enum SpaceType
     {
         Floor, //0...Floor
@@ -47,9 +47,9 @@ public class MapGenerator : MonoBehaviour
         Player,  //2...Player
         Treasure //3...Treasure
     }
-    SpaceType[,] map; // Šeƒ}ƒX‚Ì“ñŸŒ³”z—ñ‚ªƒ}ƒbƒv‚Æ‚È‚é
+    SpaceType[,] map; // å„ãƒã‚¹ã®äºŒæ¬¡å…ƒé…åˆ—ãŒãƒãƒƒãƒ—ã¨ãªã‚‹
 
-    //À•W‚ğ“ü—Í‚Æ‚µ‚Ä‘Î‰‚·‚émap‚ÌˆÊ’u‚Ì—ñ‹“Œ^‚Ì’l‚ğ•Ô‚·ŠÖ”
+    //åº§æ¨™ã‚’å…¥åŠ›ã¨ã—ã¦å¯¾å¿œã™ã‚‹mapã®ä½ç½®ã®åˆ—æŒ™å‹ã®å€¤ã‚’è¿”ã™é–¢æ•°
     public SpaceType GetSpaceType(Vector2Int pos)
     {
         return map[pos.x, pos.y];
@@ -57,15 +57,15 @@ public class MapGenerator : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         h = StartDirector.height;
         w = StartDirector.width;
         
-        maptextToSpceType();//map‚ğì¬
+        maptextToSpceType();//mapã‚’ä½œæˆ
        
-        makeMap(); //ƒ}ƒbƒv‚ğ•\¦
+        makeMap(); //ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
         
-        //ƒ}ƒbƒv‚Ì•\¦ˆÊ’u
+        //ãƒãƒƒãƒ—ã®è¡¨ç¤ºä½ç½®
         map2D.position = new Vector3(0, 0);
         
     }
@@ -73,7 +73,7 @@ public class MapGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒXƒy[ƒXƒL[‰Ÿ‰º‚ÉƒQ[ƒ€ƒNƒŠƒAÏ‚İ‚Å‚ ‚ê‚Î‚à‚¤ˆê‰ñ
+        //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã«ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢æ¸ˆã¿ã§ã‚ã‚Œã°ã‚‚ã†ä¸€å›
         if (Input.GetKeyDown(KeyCode.Space))
         {
             
@@ -81,68 +81,68 @@ public class MapGenerator : MonoBehaviour
             GameObject player = GameObject.Find("Player(Clone)");
             if (player.GetComponent<Player>().gameClear)
             {
-                //2Dƒ}ƒbƒv‚ğíœ
+                //2Dãƒãƒƒãƒ—ã‚’å‰Šé™¤
                 clear2DView();
                 Start();
             }
         }
     }
 
-    //map‚ğì¬‚·‚éŠÖ”
+    //mapã‚’ä½œæˆã™ã‚‹é–¢æ•°
     private void maptextToSpceType()
     {
-        //MazeGenerator‚ğƒCƒ“ƒXƒ^ƒ“ƒX‰»
+        //MazeGeneratorã‚’ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
         maze = new MazeGenerator(h, w);
-        //–À˜Hƒf[ƒ^—p“ñŸŒ³”z—ñ‚ğ¶¬
+        //è¿·è·¯ãƒ‡ãƒ¼ã‚¿ç”¨äºŒæ¬¡å…ƒé…åˆ—ã‚’ç”Ÿæˆ
         mazeData = new int[h, w];
-        //–À˜Hƒf[ƒ^ì¬•æ“¾
+        //è¿·è·¯ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼†å–å¾—
         mazeData = maze.MazeGenerate();
-        //ƒ}ƒbƒv‚Ì‰¡‚Ì’·‚³æ“¾
+        //ãƒãƒƒãƒ—ã®æ¨ªã®é•·ã•å–å¾—
         row = mazeData.GetLength(1);
-        //ƒ}ƒbƒv‚Ìc‚Ì’·‚³æ“¾
+        //ãƒãƒƒãƒ—ã®ç¸¦ã®é•·ã•å–å¾—
         col = mazeData.GetLength(0);
-        //ƒ}ƒbƒvƒe[ƒuƒ‹‰Šú‰»
+        //ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
         map = new SpaceType[col, row];
-        //ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì”z—ñ‚ğ‰Šú‰»
-        objects = new GameObject[row * col@+ 2];//Šeƒ}ƒX‚Ì°‚Æ•ÇCX‚É‚¨•ó‚ÆƒvƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg‚Å+2
+        //ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é…åˆ—ã‚’åˆæœŸåŒ–
+        objects = new GameObject[row * colã€€+ 2];//å„ãƒã‚¹ã®åºŠã¨å£ï¼Œæ›´ã«ãŠå®ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§+2
 
-        //ƒ}ƒbƒvƒe[ƒuƒ‹ì¬
+        //ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
         for (int i = 0; i < col; i++)
         {
             for (int j = 0; j < row; j++)
             {
-                //–À˜Hƒf[ƒ^‚ğSpaceType‚ÉƒLƒƒƒXƒg‚µ‚Äƒ}ƒbƒvƒe[ƒuƒ‹‚ÉŠi”[
+                //è¿·è·¯ãƒ‡ãƒ¼ã‚¿ã‚’SpaceTypeã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ ¼ç´
                 map[i, j] = (SpaceType)mazeData[i , j];
             }
         }
 
 
-        //ƒeƒLƒXƒgƒf[ƒ^‚©‚çƒ}ƒbƒv‚ğì‚éÛ‚ÍˆÈ‰º‚ÌƒRƒƒ“ƒgƒAƒEƒg‚ğŠO‚·
+        //ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒãƒƒãƒ—ã‚’ä½œã‚‹éš›ã¯ä»¥ä¸‹ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’å¤–ã™
 
-        //var lineSeparator = new char[] { '\n', '\r' };//–³‹‚·‚é‚×‚«‰üsƒR[ƒh
-        //var spaceSeparator = new char[] { ',' };//ƒ}ƒX‚ÌŠÔ‚Ì–³‹‚·‚é‚×‚«ƒRƒ“ƒ}
+        //var lineSeparator = new char[] { '\n', '\r' };//ç„¡è¦–ã™ã‚‹ã¹ãæ”¹è¡Œã‚³ãƒ¼ãƒ‰
+        //var spaceSeparator = new char[] { ',' };//ãƒã‚¹ã®é–“ã®ç„¡è¦–ã™ã‚‹ã¹ãã‚³ãƒ³ãƒ
 
-        ////ƒeƒLƒXƒgƒf[ƒ^‚ğŠes‚²‚Æ‚É•ªŠ„
+        ////ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å„è¡Œã”ã¨ã«åˆ†å‰²
         //string[] mapLines = mapText.text.Split(lineSeparator, System.StringSplitOptions.RemoveEmptyEntries);
 
-        ////s‚Ì”
+        ////è¡Œã®æ•°
         //int numRow = mapLines.Length;
-        ////—ñ‚Ì”
+        ////åˆ—ã®æ•°
         //int numCol = mapLines[0].Split(new char[] { ',' }).Length;
-        ////numRow * numCol‚Ìƒ}ƒX‚ğ‚Âmap‚ğ‰Šú‰»
+        ////numRow * numColã®ãƒã‚¹ã‚’æŒã¤mapã‚’åˆæœŸåŒ–
         //map = new SpaceType[numCol, numRow];
 
-        ////Šes‚²‚Æ‚É•ªŠ„
+        ////å„è¡Œã”ã¨ã«åˆ†å‰²
         //for(int i = 0; i< numRow; i++)
         //{
-        //    //1ƒ}ƒX‚²‚Æ‚É•ªŠ„
+        //    //1ãƒã‚¹ã”ã¨ã«åˆ†å‰²
         //    string[] spaceValue = mapLines[i].Split(spaceSeparator);
 
-        //    //Še0,1,2‚ğenumŒ^‚Ì’l‚É•ÏŠ·
+        //    //å„0,1,2ã‚’enumå‹ã®å€¤ã«å¤‰æ›
         //    for (int j = 0; j < numCol; j++)
         //    {
-        //        //”z—ñmap‚Ìisj—ñ–Ú‚Ö‚Ì‘ã“ü
-        //        //spaceValue‚Ìj”Ô–Ú‚ğ®”‚ÉƒLƒƒƒXƒg‚µCX‚ÉSpaceTypeŒ^‚ÉƒLƒƒƒXƒg
+        //        //é…åˆ—mapã®iè¡Œjåˆ—ç›®ã¸ã®ä»£å…¥
+        //        //spaceValueã®jç•ªç›®ã‚’æ•´æ•°ã«ã‚­ãƒ£ã‚¹ãƒˆã—ï¼Œæ›´ã«SpaceTypeå‹ã«ã‚­ãƒ£ã‚¹ãƒˆ
         //        map[i, j] = (SpaceType) int.Parse(spaceValue[j]);
         //    }
         //}
@@ -150,94 +150,94 @@ public class MapGenerator : MonoBehaviour
 
     private void makeMap()
     {
-        //ƒhƒbƒgŠG‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+        //ãƒ‰ãƒƒãƒˆçµµã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
         spaceSize = prefabs[0].GetComponent<SpriteRenderer>().bounds.size.x;
 
-        //’†SÀ•W‚ğæ“¾
+        //ä¸­å¿ƒåº§æ¨™ã‚’å–å¾—
         calcuCenter();
 
-        //map‚ÌŠes‚Åƒ‹[ƒv
+        //mapã®å„è¡Œã§ãƒ«ãƒ¼ãƒ—
         for (int i = 0; i< map.GetLength(0); i++)
         {
-            //map‚ÌŠe—ñ‚Åƒ‹[ƒv
+            //mapã®å„åˆ—ã§ãƒ«ãƒ¼ãƒ—
             for (int j = 0; j < map.GetLength(1); j++)
             {
-                //‰¼‚ÌÀ•W
+                //ä»®ã®åº§æ¨™
                 Vector2Int tantativePos = new Vector2Int(i, j);
 
-                //map[x,y]‚É“–‚½‚é‰æ‘œ‚ğprefabs“à‚©‚ç‚Á‚Ä‚«‚Ämap2D‚Ìq—v‘f‚Æ‚µ‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‰»
+                //map[x,y]ã«å½“ãŸã‚‹ç”»åƒã‚’prefabså†…ã‹ã‚‰æŒã£ã¦ãã¦map2Dã®å­è¦ç´ ã¨ã—ã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
                 GameObject mapObject = Instantiate(prefabs[(int)map[i, j]], map2D);
-                //ƒIƒuƒWƒFƒNƒg‚ğ”z—ñ‚ÉŠi”[
+                //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…åˆ—ã«æ ¼ç´
                 objects[j + i * map.GetLength(0)] = mapObject;
-                //mapObject‚ÌˆÊ’u‚ğ“KØ‚ÉˆÚ“®
-                //realPosŠÖ”‚É‚æ‚è‰æ‘œ‚Ì‘å‚«‚³‚ğl—¶‚µ‚½ˆÊ’u‚É•\¦‚³‚ê‚é
+                //mapObjectã®ä½ç½®ã‚’é©åˆ‡ã«ç§»å‹•
+                //realPosé–¢æ•°ã«ã‚ˆã‚Šç”»åƒã®å¤§ãã•ã‚’è€ƒæ…®ã—ãŸä½ç½®ã«è¡¨ç¤ºã•ã‚Œã‚‹
                 mapObject.transform.position = realPos(tantativePos);
 
 
-                ////À•W‚ª1C1‚È‚ç
+                ////åº§æ¨™ãŒ1ï¼Œ1ãªã‚‰
                 //if (i == 1 && j == 1)
                 //{
-                //    //ƒvƒŒƒCƒ„[‚ğ¶¬
+                //    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç”Ÿæˆ
                 //    GameObject player = Instantiate(prefabs[2], map2D);
-                //    //ƒ|ƒWƒVƒ‡ƒ“C³
+                //    //ãƒã‚¸ã‚·ãƒ§ãƒ³ä¿®æ­£
                 //    player.transform.position = realPos(tantativePos);
                 //    player.GetComponent<Player>().playerPos = tantativePos;
-                //    //ƒvƒŒƒCƒ„[‚ÌmapGenerator‚ğİ’è
+                //    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®mapGeneratorã‚’è¨­å®š
                 //    player.GetComponent<Player>().mapGenerator = this;
                 //}
 
-                //ƒeƒLƒXƒgƒf[ƒ^‚©‚çƒ}ƒbƒv‚ğì‚éÛ‚ÍˆÈ‰º‚ÌƒRƒƒ“ƒgƒAƒEƒg‚ğŠO‚·
-                ////ƒvƒŒ[ƒ„[‚Ìƒ}ƒX‚Ìê‡‚Í°‚à“¯‚É•\¦
+                //ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒãƒƒãƒ—ã‚’ä½œã‚‹éš›ã¯ä»¥ä¸‹ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’å¤–ã™
+                ////ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ãƒã‚¹ã®å ´åˆã¯åºŠã‚‚åŒæ™‚ã«è¡¨ç¤º
                 //if (map[i, j] == SpaceType.Player)
                 //{
-                //    //°‚Ì‰æ‘œ‚ğprefabs“à‚©‚ç‚Á‚Ä‚«‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‰»
+                //    //åºŠã®ç”»åƒã‚’prefabså†…ã‹ã‚‰æŒã£ã¦ãã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
                 //    GameObject floorObject = Instantiate(prefabs[(int) SpaceType.Floor], this.transform);
-                //    //mapObject‚ÌˆÊ’u‚ğ“KØ‚ÉˆÚ“®
+                //    //mapObjectã®ä½ç½®ã‚’é©åˆ‡ã«ç§»å‹•
                 //    floorObject.transform.position = realPos(tantativePos);
 
-                //    //ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğ‘ã“ü
+                //    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’ä»£å…¥
                 //    mapObject.GetComponent<Player>().playerPos = tantativePos;
                 //}
             }
         }
 
 
-        //ƒvƒŒƒCƒ„[‚Ì‰ŠúˆÊ’u‚Ìİ’è
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆæœŸä½ç½®ã®è¨­å®š
         while (true)
         {
-            //ƒvƒŒƒCƒ„[‚Ì‰ŠúˆÊ’u‚Í•Ç‚Å‚Í‚È‚¢‚Æ‚±‚ë‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ’è
+            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆæœŸä½ç½®ã¯å£ã§ã¯ãªã„ã¨ã“ã‚ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºå®š
             Vector2Int randomPos = new Vector2Int(Random.Range(1, w), Random.Range(1, h));
             if(GetSpaceType(randomPos) == SpaceType.Floor)
             {
-                //ƒvƒŒƒCƒ„[‚ğ¶¬
+                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç”Ÿæˆ
                 GameObject player = Instantiate(prefabs[2], map2D);
-                //ƒ|ƒWƒVƒ‡ƒ“C³
+                //ãƒã‚¸ã‚·ãƒ§ãƒ³ä¿®æ­£
                 player.transform.position = realPos(randomPos);
                 player.GetComponent<Player>().playerPos = randomPos;
-                //Å‰‚ÍƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ‰B‚µ‚Ä‚¨‚­
+                //æœ€åˆã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’éš ã—ã¦ãŠã
                 player.GetComponent<Renderer>().sortingOrder = -2;
-                //ƒvƒŒƒCƒ„[‚ÌmapGenerator‚ğİ’è
+                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®mapGeneratorã‚’è¨­å®š
                 player.GetComponent<Player>().mapGenerator = this;
-                //ƒvƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg‚ğŠi”[
+                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´
                 objects[map.GetLength(1) * map.GetLength(0)] = player;
                 break;
             }
         }
 
-        //‚¨•ó‚ÌˆÊ’u‚Ìİ’è
+        //ãŠå®ã®ä½ç½®ã®è¨­å®š
         while (true)
         {
-            //‚¨•ó‚Ì‰ŠúˆÊ’u‚Í•Ç‚Å‚Í‚È‚¢‚Æ‚±‚ë‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ’è
+            //ãŠå®ã®åˆæœŸä½ç½®ã¯å£ã§ã¯ãªã„ã¨ã“ã‚ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºå®š
             Vector2Int randomPos = new Vector2Int(Random.Range(1, w), Random.Range(1, h));
             if (GetSpaceType(randomPos) == SpaceType.Floor)
             {
-                //ƒvƒŒƒCƒ„[‚ğ¶¬
+                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç”Ÿæˆ
                 GameObject treasure = Instantiate(prefabs[3], map2D);
-                //ƒ|ƒWƒVƒ‡ƒ“C³
+                //ãƒã‚¸ã‚·ãƒ§ãƒ³ä¿®æ­£
                 treasure.transform.position = realPos(randomPos);
-                //ƒ}ƒbƒvî•ñ‚ğXV
+                //ãƒãƒƒãƒ—æƒ…å ±ã‚’æ›´æ–°
                 map[randomPos.x, randomPos.y] = SpaceType.Treasure;
-                //‚¨•ó‚ÌƒIƒuƒWƒFƒNƒg‚ğŠi”[
+                //ãŠå®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´
                 objects[map.GetLength(1) * map.GetLength(0) + 1] = treasure;
                 break;
             }
@@ -245,21 +245,21 @@ public class MapGenerator : MonoBehaviour
 
 
 
-        //’†SÀ•W‚ğŒvZ‚·‚éŠÖ”
-        //ŠesCŠe—ñ”‚Ì”¼•ª‚É‰æ‘œ‚ÌƒTƒCƒY‚ğ‚©‚¯‚é
+        //ä¸­å¿ƒåº§æ¨™ã‚’è¨ˆç®—ã™ã‚‹é–¢æ•°
+        //å„è¡Œï¼Œå„åˆ—æ•°ã®åŠåˆ†ã«ç”»åƒã®ã‚µã‚¤ã‚ºã‚’ã‹ã‘ã‚‹
         void calcuCenter()
         {
-            //s‚ª‹ô”‚Ìê‡‚Í‰æ‘œ‚Ì”¼•ª‚ÌƒTƒCƒY‚ğˆø‚­’²®‚ª•K—v
+            //è¡ŒãŒå¶æ•°ã®å ´åˆã¯ç”»åƒã®åŠåˆ†ã®ã‚µã‚¤ã‚ºã‚’å¼•ãèª¿æ•´ãŒå¿…è¦
             if (map.GetLength(0) % 2 == 0)
             {
                 centerPos.x = map.GetLength(0) / 2 * spaceSize - (spaceSize / 2);
             }
-            else//s‚ªŠï”‚Ìê‡
+            else//è¡ŒãŒå¥‡æ•°ã®å ´åˆ
             {
                 centerPos.x = map.GetLength(0) / 2 * spaceSize;
             }
 
-            //—ñ‚à“¯—l‚ÉŒvZ‚·‚é
+            //åˆ—ã‚‚åŒæ§˜ã«è¨ˆç®—ã™ã‚‹
             if (map.GetLength(1) % 2 == 0)
             {
                 centerPos.y = map.GetLength(1) / 2 * spaceSize - (spaceSize / 2);
@@ -271,16 +271,16 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    //‰¼‚ÌÀ•W‚©‚çƒvƒŒƒtƒ@ƒu‚Ì“KØ‚ÈˆÊ’u‚ğ•Ô‚·ŠÖ”
+    //ä»®ã®åº§æ¨™ã‹ã‚‰ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–ã®é©åˆ‡ãªä½ç½®ã‚’è¿”ã™é–¢æ•°
     public Vector2 realPos(Vector2Int pos)
     {
-        //‰¼‚ÌÀ•W * ‰æ‘œ‚Ì‘å‚«‚³ ‚ÌŒvZ‚Å^‚ÌÀ•W‚ğæ“¾
-        //map‚ğ’†S‚ÉˆÚ‚·‚½‚ß‚ÉcenterPos‚Ì’l‚Åˆø‚«Z
+        //ä»®ã®åº§æ¨™ * ç”»åƒã®å¤§ãã• ã®è¨ˆç®—ã§çœŸã®åº§æ¨™ã‚’å–å¾—
+        //mapã‚’ä¸­å¿ƒã«ç§»ã™ãŸã‚ã«centerPosã®å€¤ã§å¼•ãç®—
         return new Vector2(pos.x * spaceSize - centerPos.x, -(pos.y * spaceSize - centerPos.x));
     }
 
-    //3D‰æ–Ê‚Ì•Ç‚ğ•\¦‚³‚¹‚éŠÖ”,
-    //ˆø”‚ª¬‚³‚¢‚Ù‚Çè‘O‚Ì‰æ‘œ‚ğ•\¦‚³‚¹‚é
+    //3Dç”»é¢ã®å£ã‚’è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°,
+    //å¼•æ•°ãŒå°ã•ã„ã»ã©æ‰‹å‰ã®ç”»åƒã‚’è¡¨ç¤ºã•ã›ã‚‹
     public void View3D(int index)
     {
         //Debug.Log(index);
@@ -291,7 +291,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    //ˆÚ“®C•ûŒü“]Š·‚É‚»‚ê‚Ü‚Å•\¦‚µ‚Ä‚¢‚½•Ç‰æ‘œ‚ğÁ‚·‚½‚ß‚ÌŠÖ”
+    //ç§»å‹•æ™‚ï¼Œæ–¹å‘è»¢æ›æ™‚ã«ãã‚Œã¾ã§è¡¨ç¤ºã—ã¦ã„ãŸå£ç”»åƒã‚’æ¶ˆã™ãŸã‚ã®é–¢æ•°
     public void ResetView3D()
     {
         foreach (WallArr walls in wallArr)
@@ -303,7 +303,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    //ƒNƒŠƒAŒã‚É2Dƒ}ƒbƒv‚ÌƒIƒuƒWƒFƒNƒg‚ğ‘Síœ
+    //ã‚¯ãƒªã‚¢å¾Œã«2Dãƒãƒƒãƒ—ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å…¨å‰Šé™¤
     private void clear2DView()
     {
         foreach(GameObject spaceTile in objects)
@@ -313,7 +313,7 @@ public class MapGenerator : MonoBehaviour
     }
 }
 
-//•Ç‰æ‘œ—p‚ÌƒNƒ‰ƒXCGameObject‚Ì”z—ñ‚È‚Ì‚Å•¡”‚Ì‰æ‘œ‚ğˆê‚É“Z‚ß‚é‚±‚Æ‚ª‚Å‚«‚é
+//å£ç”»åƒç”¨ã®ã‚¯ãƒ©ã‚¹ï¼ŒGameObjectã®é…åˆ—ãªã®ã§è¤‡æ•°ã®ç”»åƒã‚’ä¸€ç·’ã«çºã‚ã‚‹ã“ã¨ãŒã§ãã‚‹
 [System.Serializable]
 public class WallArr
 {

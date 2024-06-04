@@ -1,62 +1,62 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
-    public MapGenerator mapGenerator;//MapGenerator‚ÌŠÖ”‚ÉƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É‚·‚é
+    public MapGenerator mapGenerator;//MapGeneratorã®é–¢æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 
-    public GameObject successText, failText, toTitleButton, toTitleButtonFrame;//‚¨•ó’T‚µ‚Ì¬Œ÷C¸”sCƒ^ƒCƒgƒ‹‘JˆÚƒ{ƒ^ƒ“‚ÌƒeƒLƒXƒgƒIƒuƒWƒFƒNƒg
+    public GameObject successText, failText, toTitleButton, toTitleButtonFrame;//ãŠå®æ¢ã—ã®æˆåŠŸæ™‚ï¼Œå¤±æ•—æ™‚ï¼Œã‚¿ã‚¤ãƒˆãƒ«é·ç§»ãƒœã‚¿ãƒ³ã®ãƒ†ã‚­ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     public Text operationInstruction;
     //Start is called before the first frame update
     void Start()
     {
-        //Å‰‚Í‚¢‚¸‚ê‚à‚àŒ©‚¦‚È‚¢ó‘Ô
+        //æœ€åˆã¯ã„ãšã‚Œã‚‚ã‚‚è¦‹ãˆãªã„çŠ¶æ…‹
         toTitleButton.SetActive(false);
         toTitleButtonFrame.SetActive(false);
         successText.SetActive(false);
         failText.SetActive(false);
-        operationInstruction.text = "©«¨ƒL[‚Å•ûŒü“]Š·@ªƒL[‚Å‘Oi\r\nƒXƒy[ƒXƒL[‚Å”­Œ@@hƒL[‚Åƒqƒ“ƒg";
+        operationInstruction.text = "â†â†“â†’ã‚­ãƒ¼ã§æ–¹å‘è»¢æ›ã€€â†‘ã‚­ãƒ¼ã§å‰é€²\r\nã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã§ç™ºæ˜ã€€hã‚­ãƒ¼ã§ãƒ’ãƒ³ãƒˆ";
     }
 
     // Update is called once per frame
     void Update()
-    {
-        //ƒXƒy[ƒXƒL[‚ª‰Ÿ‚³‚ê‚½Û‚É
+    { 
+        //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸéš›ã«
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject player = GameObject.Find("Player(Clone)");
-            if (!player.GetComponent<Player>().gameClear)//‚Ü‚¾ƒQ[ƒ€‚ª‘±‚¢‚Ä‚¢‚é‚È‚ç‚Î
+            if (!player.GetComponent<Player>().gameClear)//ã¾ã ã‚²ãƒ¼ãƒ ãŒç¶šã„ã¦ã„ã‚‹ãªã‚‰ã°
             {
-                //‚¨•ó’T‚µ‚ª¬Œ÷‚µ‚½‚È‚ç‚Î(ƒvƒŒ[ƒ„[‚ÌÀ•W‚Æ•ó‚ÌÀ•W‚ª“¯‚¶‚È‚ç‚Î)
+                //ãŠå®æ¢ã—ãŒæˆåŠŸã—ãŸãªã‚‰ã°(ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®åº§æ¨™ã¨å®ã®åº§æ¨™ãŒåŒã˜ãªã‚‰ã°)
                 if (mapGenerator.GetSpaceType(player.GetComponent<Player>().playerPos) == MapGenerator.SpaceType.Treasure)
                 {
-                    successText.SetActive(true);//ƒNƒŠƒAƒƒbƒZ[ƒW‚ğ•\¦
-                    operationInstruction.text = "ƒXƒy[ƒXƒL[‚Å‚à‚¤ˆê‰ñ‚¨•ó‚³‚ª‚µ";
-                    toTitleButton.SetActive(true);//ƒ^ƒCƒgƒ‹‘JˆÚƒ{ƒ^ƒ“•\¦
-                    toTitleButtonFrame.SetActive(true);//ƒ^ƒCƒgƒ‹‘JˆÚƒ{ƒ^ƒ“•\¦
+                    successText.SetActive(true);//ã‚¯ãƒªã‚¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+                    operationInstruction.text = "ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã§ã‚‚ã†ä¸€å›ãŠå®ã•ãŒã—";
+                    toTitleButton.SetActive(true);//ã‚¿ã‚¤ãƒˆãƒ«é·ç§»ãƒœã‚¿ãƒ³è¡¨ç¤º
+                    toTitleButtonFrame.SetActive(true);//ã‚¿ã‚¤ãƒˆãƒ«é·ç§»ãƒœã‚¿ãƒ³è¡¨ç¤º
                 }
-                else//‚¨•ó’T‚µ‚ª¸”s‚µ‚½‚È‚ç‚Î
+                else//ãŠå®æ¢ã—ãŒå¤±æ•—ã—ãŸãªã‚‰ã°
                 {
-                    failText.SetActive(true);//¸”s—p‚ÌƒƒbƒZ[ƒW‚ğ•\¦
+                    failText.SetActive(true);//å¤±æ•—ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
                 }
             }
-            else//ƒQ[ƒ€‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚é‚È‚ç‚Î
+            else//ã‚²ãƒ¼ãƒ ãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã°
             {
-                Start();//‚à‚¤ˆê‰ñ
+                Start();//ã‚‚ã†ä¸€å›
             }
 
         }
 
-        //ˆÚ“®C‚Ü‚½‚Í•ûŒü“]Š·‚ª‹N‚«‚½‚È‚ç‚Î
+        //ç§»å‹•ï¼Œã¾ãŸã¯æ–¹å‘è»¢æ›ãŒèµ·ããŸãªã‚‰ã°
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)
             || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             GameObject player = GameObject.Find("Player(Clone)");
-            if (!player.GetComponent<Player>().gameClear)//‚Ü‚¾ƒQ[ƒ€‚ª‘±‚¢‚Ä‚¢‚é‚È‚ç‚Î
+            if (!player.GetComponent<Player>().gameClear)//ã¾ã ã‚²ãƒ¼ãƒ ãŒç¶šã„ã¦ã„ã‚‹ãªã‚‰ã°
             {
-                failText.SetActive(false);//¸”s—p‚ÌƒƒbƒZ[ƒW‚ğÁ‚·
+                failText.SetActive(false);//å¤±æ•—ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã™
             }
 
         }

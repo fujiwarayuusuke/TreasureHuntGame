@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;  
 
 public class ButtonManager : MonoBehaviour
 {
-    private AudioSource audioSource;//ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚ÌŒø‰Ê‰¹—p
+    private AudioSource audioSource;//ãƒœã‚¿ãƒ³æŠ¼ã—ãŸæ™‚ã®åŠ¹æœéŸ³ç”¨
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +19,17 @@ public class ButtonManager : MonoBehaviour
     }
 
     
-    //ƒ^ƒCƒgƒ‹‚É–ß‚é—pƒ{ƒ^ƒ“
+    //ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ç”¨ãƒœã‚¿ãƒ³
     public void TitleBackButton()
     {
         //Debug.Log("Start");
-        audioSource.Play();//Œø‰Ê‰¹
+        audioSource.Play();//åŠ¹æœéŸ³
 
         Invoke(nameof(NextScene), 0.2f);
     }
 
     void NextScene()
     {
-        SceneManager.LoadScene("StartScene");//ƒQ[ƒ€‰æ–Ê‚Ö‚Æ‘JˆÚ
+        SceneManager.LoadScene("StartScene");//ã‚²ãƒ¼ãƒ ç”»é¢ã¸ã¨é·ç§»
     }
 }

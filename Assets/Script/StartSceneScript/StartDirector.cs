@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//‰Šú‰æ–Ê§Œä—p‚ÌƒXƒNƒŠƒvƒg
+//åˆæœŸç”»é¢åˆ¶å¾¡ç”¨ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 
 public class StartDirector : MonoBehaviour
 {
     public static int height, width;
 
-    private AudioSource audioSource;//ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚ÌŒø‰Ê‰¹—p
+    private AudioSource audioSource;//ãƒœã‚¿ãƒ³æŠ¼ã—ãŸæ™‚ã®åŠ¹æœéŸ³ç”¨
 
-    const int easy = 7;//“ïˆÕ“x‚²‚Æ‚Ìƒ}ƒX”
+    const int easy = 7;//é›£æ˜“åº¦ã”ã¨ã®ãƒã‚¹æ•°
     const int normal = 9;
     const int hard = 11;
     // Start is called before the first frame update
@@ -25,50 +25,50 @@ public class StartDirector : MonoBehaviour
 
     }
 
-    //easy—pƒ{ƒ^ƒ“
+    //easyç”¨ãƒœã‚¿ãƒ³
     public void Easy()
     {
         //Debug.Log("Start");
         height = easy;
         width = easy;
-        audioSource.Play();//Œø‰Ê‰¹
-        Invoke(nameof(toGameScene), 0.2f);//Œø‰Ê‰¹‘Ò‚¿
+        audioSource.Play();//åŠ¹æœéŸ³
+        Invoke(nameof(toGameScene), 0.2f);//åŠ¹æœéŸ³å¾…ã¡
     }
 
-    //normal—pƒ{ƒ^ƒ“
+    //normalç”¨ãƒœã‚¿ãƒ³
     public void Normal()
     {
         //Debug.Log("Start");
         height = normal;
         width = normal;
-        audioSource.Play();//Œø‰Ê‰¹
-        Invoke(nameof(toGameScene), 0.2f);//Œø‰Ê‰¹‘Ò‚¿
+        audioSource.Play();//åŠ¹æœéŸ³
+        Invoke(nameof(toGameScene), 0.2f);//åŠ¹æœéŸ³å¾…ã¡
     }
 
-    //hard—pƒ{ƒ^ƒ“
+    //hardç”¨ãƒœã‚¿ãƒ³
     public void Hard()
     {
         //Debug.Log("Start");
         height = hard;
         width = hard;
-        audioSource.Play();//Œø‰Ê‰¹
-        Invoke(nameof(toGameScene), 0.2f);//Œø‰Ê‰¹‘Ò‚¿
+        audioSource.Play();//åŠ¹æœéŸ³
+        Invoke(nameof(toGameScene), 0.2f);//åŠ¹æœéŸ³å¾…ã¡
     }
 
     public void InstructButton()
     {
         //Debug.Log("Instruct");
-        audioSource.Play();//Œø‰Ê‰¹
-        Invoke(nameof(toInstructionScene), 0.2f);//Œø‰Ê‰¹‘Ò‚¿
+        audioSource.Play();//åŠ¹æœéŸ³
+        Invoke(nameof(toInstructionScene), 0.2f);//åŠ¹æœéŸ³å¾…ã¡
     }
 
     void toGameScene()
     {
-        SceneManager.LoadScene("GameScene");//ƒQ[ƒ€‰æ–Ê‚Ö‚Æ‘JˆÚ
+        SceneManager.LoadScene("GameScene");//ã‚²ãƒ¼ãƒ ç”»é¢ã¸ã¨é·ç§»
     }
 
     void toInstructionScene()
     {
-        SceneManager.LoadScene("InstructScene");//‘€ìà–¾‰æ–Ê‚Ö‚Æ‘JˆÚ
+        SceneManager.LoadScene("InstructScene");//æ“ä½œèª¬æ˜ç”»é¢ã¸ã¨é·ç§»
     }
 }

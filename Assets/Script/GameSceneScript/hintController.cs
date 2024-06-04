@@ -1,45 +1,45 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ƒqƒ“ƒg‚É‚æ‚Á‚ÄƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğƒ}ƒbƒv‚É•\¦‚³‚¹‚é‚©Ø‚è‘Ö‚¦‚é(ƒŒƒCƒ„[‚Å’²®)
+//ãƒ’ãƒ³ãƒˆã«ã‚ˆã£ã¦ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’ãƒãƒƒãƒ—ã«è¡¨ç¤ºã•ã›ã‚‹ã‹åˆ‡ã‚Šæ›¿ãˆã‚‹(ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§èª¿æ•´)
 public class hintContrller : MonoBehaviour
 {
-    GameObject player;//ƒvƒŒƒCƒ„[‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg
-    bool isHint;//Å‰‚Íƒqƒ“ƒg–³‚µ
+    GameObject player;//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    bool isHint;//æœ€åˆã¯ãƒ’ãƒ³ãƒˆç„¡ã—
     // Start is called before the first frame update
     void Start()
     {
         isHint = false;
-    }
+    } 
 
     // Update is called once per frame
     void Update()
     {
-        //H‚ª‰Ÿ‰º‚³‚ê‚½‚È‚ç‚Î
+        //HãŒæŠ¼ä¸‹ã•ã‚ŒãŸãªã‚‰ã°
         if (Input.GetKeyDown(KeyCode.H) )
         {
             player = GameObject.Find("Player(Clone)");
-            if (!player.GetComponent<Player>().gameClear && isHint)//ƒqƒ“ƒg‚ğ—^‚¦‚Ä‚¢‚éó‘Ô‚È‚ç‚ÎCƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ‰B‚·
+            if (!player.GetComponent<Player>().gameClear && isHint)//ãƒ’ãƒ³ãƒˆã‚’ä¸ãˆã¦ã„ã‚‹çŠ¶æ…‹ãªã‚‰ã°ï¼Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’éš ã™
             {
                 player.GetComponent<Renderer>().sortingOrder = -2;
-                isHint = !isHint;//ƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+                isHint = !isHint;//ãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
             }
-            else if(!player.GetComponent<Player>().gameClear && !isHint)//ƒqƒ“ƒg‚ğ—^‚¦‚Ä‚¢‚È‚¢ó‘Ô‚È‚ç‚ÎƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ¦‚·
+            else if(!player.GetComponent<Player>().gameClear && !isHint)//ãƒ’ãƒ³ãƒˆã‚’ä¸ãˆã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰ã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’ç¤ºã™
             {
                 player.GetComponent<Renderer>().sortingOrder = 1;
-                isHint = !isHint;//ƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+                isHint = !isHint;//ãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
             }
         }
 
-        //ƒXƒy[ƒXƒL[‚ª‰Ÿ‚³‚ê‚½Û‚É
+        //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸéš›ã«
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject player = GameObject.Find("Player(Clone)");
-            if (player.GetComponent<Player>().gameClear)//ƒQ[ƒ€‚ªI—¹‚µ‚Ä‚¢‚é‚È‚ç‚Î
+            if (player.GetComponent<Player>().gameClear)//ã‚²ãƒ¼ãƒ ãŒçµ‚äº†ã—ã¦ã„ã‚‹ãªã‚‰ã°
             {
                 
-                Start();//‚à‚¤ˆê‰ñ
+                Start();//ã‚‚ã†ä¸€å›
                 
             }
         }
