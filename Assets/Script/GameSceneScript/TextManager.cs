@@ -17,7 +17,7 @@ public class TextManager : MonoBehaviour
         toTitleButtonFrame.SetActive(false);
         successText.SetActive(false);
         failText.SetActive(false);
-        operationInstruction.text = "←↓→キーで方向転換　↑キーで前進\r\nスペースキーで発掘　hキーでヒント";
+        operationInstruction.text = "←↓→キーで方向転換 ↑キーで前進\r\nスペースキーで発掘　hキーでヒント";
     }
 
     // Update is called once per frame
