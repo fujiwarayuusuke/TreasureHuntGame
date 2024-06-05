@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: -146}
-  m_SizeDelta: {x: 247.23, y: 70.7326}
+  m_AnchoredPosition: {x: -0.4137001, y: -146.16133}
+  m_SizeDelta: {x: 302.4026, y: 71.0552}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5595211
 MonoBehaviour:
@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
+    m_PressedColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+    m_SelectedColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -45.90235, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.0865555, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 282608738}
   - component: {fileID: 282608737}
   - component: {fileID: 282608739}
+  - component: {fileID: 282608740}
   m_Layer: 5
   m_Name: Easy
   m_TagString: Untagged
@@ -523,9 +524,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_PressedColor: {r: 0.40251565, g: 0.40251565, b: 0.40251565, a: 1}
+    m_SelectedColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -557,6 +558,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &282608740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282608735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16a9fb6889051b49b71cd61bebd3787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &363698436
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,9 +740,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
+    m_PressedColor: {r: 0.46540874, g: 0.4551639, b: 0.4551639, a: 1}
+    m_SelectedColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -926,6 +939,7 @@ Transform:
   m_Children:
   - {fileID: 1865584155}
   - {fileID: 1762722385}
+  - {fileID: 1491706702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1052325195
@@ -958,6 +972,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00366dc30bd3e444ca587d11ed9398f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easyText: {fileID: 0}
+  normalText: {fileID: 0}
+  hardText: {fileID: 0}
 --- !u!4 &1052325197
 Transform:
   m_ObjectHideFlags: 0
@@ -1374,12 +1391,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491706700}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -277.76273, y: -183.55565, z: 2.5347674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 747531902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1578430374
 GameObject:
@@ -1483,9 +1500,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.44025147, g: 0.44025147, b: 0.44025147, a: 1}
+    m_PressedColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
+    m_SelectedColor: {r: 0.46540874, g: 0.46540874, b: 0.46540874, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1655,6 +1672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762722385}
   - component: {fileID: 1762722384}
+  - component: {fileID: 1762722386}
   m_Layer: 0
   m_Name: map
   m_TagString: Untagged
@@ -1729,6 +1747,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 747531902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1762722386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762722383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16a9fb6889051b49b71cd61bebd3787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1776767537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,6 +1916,5 @@ SceneRoots:
   - {fileID: 109099655}
   - {fileID: 363698439}
   - {fileID: 1052325197}
-  - {fileID: 1491706702}
   - {fileID: 1661971269}
   - {fileID: 747531902}

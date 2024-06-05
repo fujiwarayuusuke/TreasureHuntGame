@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 //初期画面制御用のスクリプト 
 public class StartDirector : MonoBehaviour
 {
-    public static int height, width;
+    public static int height, width;//難易度をシーン間で引き渡すための変数
+
+    public TextMeshProUGUI easyText, normalText, hardText;//難易度のテキスト
 
     private AudioSource audioSource;//ボタン押した時の効果音用
 
