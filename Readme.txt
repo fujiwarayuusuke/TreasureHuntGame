@@ -1,6 +1,6 @@
 自作ウィザードリィ風ゲームです
 ゲームはコチラから遊べます
-https://discord.com/channels/@me/767136013561626625/1247882058987212901
+https://fujiwarayuusuke.github.io/TreasureHuntGame/
 
 以下Asset内ファイル解説
 Font 日本語用のフォント
