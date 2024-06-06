@@ -1,4 +1,4 @@
-自作ウィザードリィ風ゲームです
+自作ウィザードリィ風ゲームです，Unityを使いました
 ゲームはコチラから遊べます
 https://fujiwarayuusuke.github.io/TreasureHuntGame/
 
